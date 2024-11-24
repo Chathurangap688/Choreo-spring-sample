@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @SpringBootApplication
 @RestController
 public class SampleApplication {
@@ -20,8 +23,8 @@ public class SampleApplication {
 
     @CrossOrigin(origins = "*")
     @GetMapping("/hello")
-    public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-      return String.format("Hello %s!", name);
+    public Object hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+      return sayHello(name);
     }
     @Configuration
     public class WebConfiguration implements WebMvcConfigurer {
@@ -30,6 +33,14 @@ public class SampleApplication {
         public void addCorsMappings(CorsRegistry registry) {
             registry.addMapping("/**").allowedMethods("*");
         }
+    }
+    @GetMapping
+    public Map<String, String> sayHello(String name) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("key", "text");
+        map.put("name", name);
+        map.put("aa", "bb");
+        return map;
     }
 
 }
