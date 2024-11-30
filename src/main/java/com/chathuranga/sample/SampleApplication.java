@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.wso2.charon3.core.objects.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,7 +52,6 @@ public class SampleApplication {
         map.put("aa", getUser());
         return map;
     }
-    @Bean
     @Bean
     public RestTemplate restTemplate(){
         return new RestTemplate();
