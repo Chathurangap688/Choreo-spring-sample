@@ -30,9 +30,9 @@ public class SampleApplication {
 	}
 
     @CrossOrigin(origins = "*")
-    @GetMapping("/hello")
-    public Object hello(@RequestParam(value = "name", defaultValue = "World") String name) {
-      return sayHello(name);
+    @GetMapping("/getUser")
+    public Object hello(@RequestParam(value = "userId", defaultValue = "") String userId) {
+      return getScimUser(userId);
     }
     @Configuration
     public class WebConfiguration implements WebMvcConfigurer {
@@ -43,11 +43,11 @@ public class SampleApplication {
         }
     }
     @GetMapping
-    public Map<String, String> sayHello(String name) {
+    public Map<String, String> getScimUser(String userId) {
         HashMap<String, String> map = new HashMap<>();
         map.put("key", "text");
-        map.put("name", name);
-        map.put("aa", getUser());
+        map.put("userId", userId);
+        map.put("user", getUser(userId));
         return map;
     }
 
@@ -62,9 +62,9 @@ public class SampleApplication {
         return headers;
     }
 
-    public String getUser() {
+    public String getUser(String userId) {
 
-        String url = "https://api.asgardeo.io/t/chathurangap/scim2/Users/899c8ade-25fd-44ab-9f3a-6ac9d2e3df92";
+        String url = "https://api.asgardeo.io/t/chathurangap/scim2/Users/" + userId;
         InvokeApi invokeApi = new InvokeApi();
         Object o = new Object();
         HttpEntity<String> request = new HttpEntity<String>(getHttpHeader());
