@@ -57,7 +57,7 @@ public class SampleApplication {
     public HttpHeaders getHttpHeader() {
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer 1764cdc3-28d2-435f-84bc-d032deec245e");
+        headers.add("Authorization", "Bearer 5846e4d6-d645-3afb-90cd-33ed763e1121");
         headers.add("accept", "application/scim+json");
         return headers;
     }
